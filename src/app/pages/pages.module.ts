@@ -12,6 +12,8 @@ import { GraficalComponent } from './grafical/grafical.component';
 import { PagesComponent } from './pages.component';
 import { ComponentsModule } from '../components/components.module';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     ProgressComponent,
     GraficalComponent,
     PagesComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    PromesasComponent,
+    RxjsComponent
   ],
   exports:[
     DashboardComponent,

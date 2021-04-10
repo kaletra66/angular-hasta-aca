@@ -31,11 +31,20 @@ export class LoginComponent implements OnInit {
               private ngZone:NgZone) { }
 
   ngOnInit(): void {
+
+    this.checkIfSesion();
+  
     this.email = localStorage.getItem("remember") || "";
     if(this.email.length > 1){
       this.remember = true;
     }
     this.renderButton();
+  }
+
+  checkIfSesion(){
+    if(localStorage.getItem("token")){
+      this.router.navigateByUrl('/');
+    }
   }
 
   login(){
@@ -73,17 +82,20 @@ export class LoginComponent implements OnInit {
     this.auth2.attachClickHandler(element, {},
         (googleUser:any) => {
           const id_token = googleUser.getAuthResponse().id_token;
-          console.log(id_token);
+          
+          console.log({id_token:id_token});
+
           this.usuarioSerivice.loginGoogle( id_token )
           .subscribe( resp => {
             //Mover al dashboard
             console.log("Mover al dashboard");
             this.ngZone.run( () =>{
-              // this.router.navigateByUrl('/');
+              this.router.navigateByUrl('/');
             })
           });
         }, (error:any) => {
-          alert(JSON.stringify(error, undefined, 2));
+          console.log("%cNo se inicia sesión", "color: red");
+          console.log(JSON.stringify(error, undefined, 2));
         });
   }
 }
